@@ -1,0 +1,99 @@
+{
+  "month": "2026-04",
+  "period": {
+    "start": "2026-04-01",
+    "end": "2026-04-20"
+  },
+  "generated_at": "2026-04-20",
+  "title": "AI 產業動態月報",
+  "subtitle": "2026 年 4 月號",
+  "categories": {
+    "compute_infrastructure": {
+      "label": "算力建設",
+      "sublabel": "國家級與民間合作模式",
+      "summary_headlines": [
+        {
+          "title": "（範例）美國能源部宣布新一輪國家級 AI 算力中心補助計畫",
+          "url": "https://example.com/news/1",
+          "source": "Reuters",
+          "date": "2026-04-05",
+          "one_liner": "總額 120 億美元，鎖定俄亥俄、德州、喬治亞三州，要求民間配比投資不低於 40%。"
+        },
+        {
+          "title": "（範例）台積電與軟銀合資案傳延後，日本政府仍承諾原補貼規模",
+          "url": "https://example.com/news/2",
+          "source": "日經新聞",
+          "date": "2026-04-08",
+          "one_liner": "九州新廠因水電基礎設施審查暫緩啟用，補貼架構不變。"
+        },
+        {
+          "title": "（範例）新加坡 IMDA 推出 Green AI Compute 架構，要求 PUE ≤ 1.25",
+          "url": "https://example.com/news/3",
+          "source": "The Straits Times",
+          "date": "2026-04-12",
+          "one_liner": "新建 AI 資料中心須採液冷或熱回收技術，與星國減碳路徑綁定。"
+        }
+      ],
+      "deep_analyses": [
+        {
+          "title": "國家級算力補貼的「民間配比」正在成為全球新標準",
+          "anchor_url": "https://example.com/news/1",
+          "related_urls": [
+            "https://example.com/ref/a",
+            "https://example.com/ref/b"
+          ],
+          "body": "美國能源部 4 月公布的第三輪 AI 算力中心補助，首次將「民間配比投資」從建議項目升格為硬性門檻，且下限訂在 40%。這個調整背後有兩個訊號值得注意。第一，國家級算力投資已從「政府主導、廠商承接」轉向「政府引導、市場出資」，這與 2024 年 CHIPS Act 的邏輯一致但更進一步，顯示聯邦資金正逐步退出基建角色、轉向風險分擔。第二，40% 門檻與日本經產省去年公布的半導體補貼比例（民間配比 33%）、以及新加坡 IMDA 的 Green AI Compute 架構（要求業者承擔全部建置、政府提供稅負減免）構成一條橫跨三個政策體系的趨勢線。\n\n對台灣而言，這個訊號直接影響「數位港」類型國家級計畫的設計邏輯。若國際主流已走向「政府補貼比例 ≤ 60%」，台灣若以 100% 政府預算推動海纜登陸站或 IDC 建設，未來在國際投資人評估時可能被視為「低市場驗證度」。但反過來，民間配比過高也會排擠中小型業者參與空間，如何在「市場驗證」與「產業普惠」之間取得平衡，將是後續值得深入比較的政策議題。"
+        }
+      ]
+    },
+    "llm_tech_governance": {
+      "label": "LLM 技術、治理與應用",
+      "sublabel": "",
+      "summary_headlines": [
+        {
+          "title": "（範例）Anthropic 發布 Claude Opus 4.6，長上下文推理基準再刷新",
+          "url": "https://example.com/news/4",
+          "source": "Anthropic Blog",
+          "date": "2026-04-03",
+          "one_liner": "200K context 下 MMLU-Pro 達 87.2%，首次在法律推理測項超越 GPT-5。"
+        },
+        {
+          "title": "（範例）歐盟 AI Act 施行細則第二階段生效，通用模型需公開訓練資料摘要",
+          "url": "https://example.com/news/5",
+          "source": "Politico EU",
+          "date": "2026-04-11",
+          "one_liner": "GPAI 業者須於 30 日內提交訓練資料類別、版權處理、偏差評估摘要。"
+        }
+      ],
+      "deep_analyses": [
+        {
+          "title": "歐盟 GPAI 揭露義務如何改變全球 LLM 廠商的資料策略",
+          "anchor_url": "https://example.com/news/5",
+          "related_urls": [],
+          "body": "歐盟 AI Act 第二階段施行細則於 4 月生效，其中針對通用型 AI 模型（GPAI）的「訓練資料摘要公開義務」是過去一年業界最關注、也最抗拒的條文之一。條文要求業者須揭露訓練資料的類別分布、版權處理機制與偏差評估摘要，並於模型上架歐盟市場 30 日內提交。\n\n這個義務對 LLM 廠商的實際影響分兩層。技術層面，由於多數前沿模型都使用複雜的資料混合（web crawl + licensed data + synthetic data），要產出「可被驗證的摘要」本身就是工程挑戰。治理層面，揭露要求實際上逼迫廠商面對「訓練資料是否合法」這個他們多年來刻意模糊的問題——一旦摘要公開，版權方的訴訟材料基本上是送上門的。\n\n對台灣的啟示是，若本地 AI 應用開發平台或自主 LLM 團隊希望切入歐洲市場，從現在開始的資料採購與標註流程就必須具備「可追溯性」。這對中小型新創而言是不小的合規成本，但也反過來創造了本地資料治理工具、合規顧問服務的新市場。"
+        }
+      ]
+    },
+    "ai_app_platform": {
+      "label": "AI 應用開發平台",
+      "sublabel": "",
+      "summary_headlines": [
+        {
+          "title": "（範例）Microsoft Azure AI Foundry 宣布整合 MCP 協定支援第三方代理",
+          "url": "https://example.com/news/6",
+          "source": "Microsoft Build",
+          "date": "2026-04-09",
+          "one_liner": "企業可在 Foundry 上掛載 Anthropic、Google、開源代理，統一計費與稽核。"
+        },
+        {
+          "title": "（範例）Vercel AI SDK 4.0 推出，新增 agent workflow 原生支援",
+          "url": "https://example.com/news/7",
+          "source": "Vercel",
+          "date": "2026-04-15",
+          "one_liner": "單一 API 描述多步驟代理流程，部署時自動編排運算資源。"
+        }
+      ],
+      "deep_analyses": []
+    }
+  }
+}
