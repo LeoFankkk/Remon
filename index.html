@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 產業動態月報 | Remon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2847;
+    --navy-deep: #0f1a33;
+    --ink: #23272e;
+    --ink-soft: #4a5260;
+    --rule: #d4d4d0;
+    --rule-soft: #ebe9e3;
+    --paper: #fbfaf5;
+    --accent: #8b1a1a;
+    --accent-soft: #b84a3e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: "Noto Serif TC", "Cormorant Garamond", Georgia, serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.75;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  /* ===== Masthead ===== */
+  .masthead {
+    padding: 72px 0 40px;
+    border-bottom: 3px double var(--navy);
+    margin-bottom: 56px;
+  }
+
+  .masthead-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 32px;
+  }
+
+  .masthead-top .brand {
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  .masthead h1 {
+    font-family: "Cormorant Garamond", "Noto Serif TC", serif;
+    font-size: 56px;
+    line-height: 1.1;
+    font-weight: 500;
+    color: var(--navy-deep);
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+
+  .masthead h1 .zh {
+    font-family: "Noto Serif TC", serif;
+    font-weight: 600;
+  }
+
+  .masthead .subtitle {
+    font-family: "Noto Serif TC", serif;
+    font-size: 18px;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-bottom: 24px;
+  }
+
+  .masthead .meta {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+  }
+
+  .masthead .meta span + span::before {
+    content: "·";
+    margin: 0 12px;
+    color: var(--rule);
+  }
+
+  /* ===== Category Nav ===== */
+  .cat-nav {
+    display: flex;
+    gap: 0;
+    margin-bottom: 64px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .cat-btn {
+    flex: 1;
+    padding: 24px 20px;
+    background: transparent;
+    border: none;
+    border-right: 1px solid var(--rule);
+    cursor: pointer;
+    text-align: center;
+    font-family: "Noto Serif TC", serif;
+    color: var(--ink-soft);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .cat-btn:last-child { border-right: none; }
+
+  .cat-btn .num {
+    display: block;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--accent);
+    margin-bottom: 6px;
+    letter-spacing: 0.05em;
+  }
+
+  .cat-btn .label {
+    display: block;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--navy-deep);
+    margin-bottom: 4px;
+  }
+
+  .cat-btn .sublabel {
+    display: block;
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  .cat-btn:hover {
+    background: rgba(26, 40, 71, 0.03);
+  }
+
+  .cat-btn.active {
+    background: var(--navy-deep);
+  }
+
+  .cat-btn.active .num { color: #d4a855; }
+  .cat-btn.active .label { color: #fbfaf5; }
+  .cat-btn.active .sublabel { color: rgba(251, 250, 245, 0.7); }
+
+  /* ===== Category Section ===== */
+  .cat-section {
+    display: none;
+    animation: fadeIn 0.4s ease;
+  }
+
+  .cat-section.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-header {
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section-header .kicker {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .section-header h2 {
+    font-family: "Noto Serif TC", serif;
+    font-size: 34px;
+    font-weight: 600;
+    color: var(--navy-deep);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .section-header .desc {
+    font-size: 15px;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-top: 10px;
+  }
+
+  /* ===== Part label ===== */
+  .part-label {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    margin-top: 56px;
+  }
+
+  .part-label:first-of-type { margin-top: 0; }
+
+  .part-label .num {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .part-label .rule {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .part-label .title {
+    font-family: "Noto Serif TC", serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--navy-deep);
+    letter-spacing: 0.02em;
+  }
+
+  /* ===== Headlines list ===== */
+  .headlines {
+    list-style: none;
+    margin-bottom: 16px;
+  }
+
+  .headlines li {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+
+  .headlines li:last-child { border-bottom: none; }
+
+  .headlines .date-source {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .headlines .date-source .source {
+    font-style: italic;
+    text-transform: none;
+    letter-spacing: 0.02em;
+  }
+
+  .headlines h3 {
+    font-family: "Noto Serif TC", serif;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+
+  .headlines h3 a {
+    color: var(--navy-deep);
+    text-decoration: none;
+    background-image: linear-gradient(transparent 94%, var(--accent) 94%);
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s ease, color 0.3s ease;
+  }
+
+  .headlines h3 a:hover {
+    color: var(--accent);
+    background-size: 100% 100%;
+  }
+
+  .headlines h3 a::after {
+    content: " ↗";
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-left: 2px;
+  }
+
+  .headlines .one-liner {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    padding-left: 0;
+  }
+
+  /* ===== Deep analysis ===== */
+  .analysis {
+    margin-top: 28px;
+    padding: 36px 40px;
+    background: #fff;
+    border-left: 3px solid var(--navy);
+    box-shadow: 0 1px 0 var(--rule-soft);
+  }
+
+  .analysis + .analysis { margin-top: 24px; }
+
+  .analysis .tag {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .analysis h3 {
+    font-family: "Noto Serif TC", serif;
+    font-size: 23px;
+    font-weight: 600;
+    color: var(--navy-deep);
+    line-height: 1.35;
+    margin-bottom: 18px;
+  }
+
+  .analysis .body {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--ink);
+  }
+
+  .analysis .body p + p { margin-top: 16px; }
+
+  .analysis .refs {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px dotted var(--rule);
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+
+  .analysis .refs a {
+    color: var(--navy);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    margin-right: 12px;
+  }
+
+  .analysis .refs a:hover { border-color: var(--accent); color: var(--accent); }
+
+  .empty {
+    padding: 32px;
+    text-align: center;
+    color: var(--ink-soft);
+    font-style: italic;
+    font-size: 14px;
+    background: rgba(212,212,208,0.15);
+  }
+
+  /* ===== Colophon ===== */
+  .colophon {
+    margin-top: 96px;
+    padding: 32px 0 56px;
+    border-top: 3px double var(--navy);
+    text-align: center;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .colophon .mark {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--navy);
+    text-transform: none;
+    letter-spacing: 0.02em;
+    margin-bottom: 8px;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 720px) {
+    .page { padding: 0 24px; }
+    .masthead h1 { font-size: 38px; }
+    .masthead-top { flex-direction: column; gap: 8px; align-items: flex-start; }
+    .cat-nav { flex-direction: column; }
+    .cat-btn { border-right: none; border-bottom: 1px solid var(--rule); }
+    .cat-btn:last-child { border-bottom: none; }
+    .section-header h2 { font-size: 26px; }
+    .analysis { padding: 24px 22px; }
+    .analysis h3 { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ===== Masthead ===== -->
+  <header class="masthead">
+    <div class="masthead-top">
+      <span class="brand">REMON · MONTHLY INTELLIGENCE</span>
+      <span id="issue-num">—</span>
+    </div>
+    <h1><span class="zh" id="report-title">載入中…</span></h1>
+    <div class="subtitle" id="report-subtitle">—</div>
+    <div class="meta">
+      <span id="report-period">—</span>
+      <span id="report-generated">—</span>
+      <span>Curated by Leonard</span>
+    </div>
+  </header>
+
+  <!-- ===== Category Nav ===== -->
+  <nav class="cat-nav" id="cat-nav"></nav>
+
+  <!-- ===== Content ===== -->
+  <main id="content"></main>
+
+  <!-- ===== Colophon ===== -->
+  <footer class="colophon">
+    <div class="mark">Remon</div>
+    <div>Produced with Claude · Published via GitHub Pages</div>
+  </footer>
+
+</div>
+
+<script>
+// ===== Configuration =====
+// 編輯這裡切換要載入哪一期月報。
+// 之後要做「選擇月份」下拉選單時，可以讀 data/index.json 來產生。
+const CURRENT_REPORT = "2026-04.json";
+
+const CATEGORY_ORDER = [
+  "compute_infrastructure",
+  "llm_tech_governance",
+  "ai_app_platform"
+];
+
+const ROMAN = ["I", "II", "III", "IV", "V"];
+
+// ===== Helpers =====
+function esc(str) {
+  if (!str) return "";
+  return String(str)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+}
+
+function formatDate(iso) {
+  if (!iso) return "";
+  const [y, m, d] = iso.split("-");
+  return `${y}.${m}.${d}`;
+}
+
+// ===== Render =====
+async function load() {
+  try {
+    const res = await fetch(`data/${CURRENT_REPORT}`);
+    const data = await res.json();
+    renderMasthead(data);
+    renderNav(data);
+    renderContent(data);
+  } catch (err) {
+    document.getElementById("content").innerHTML =
+      `<div class="empty">月報資料載入失敗：${esc(err.message)}</div>`;
+  }
+}
+
+function renderMasthead(data) {
+  document.getElementById("report-title").textContent = data.title || "AI 產業動態月報";
+  document.getElementById("report-subtitle").textContent = data.subtitle || "";
+  document.getElementById("issue-num").textContent = `Vol. ${data.month || ""}`;
+  const p = data.period || {};
+  document.getElementById("report-period").textContent =
+    `Coverage ${formatDate(p.start)} – ${formatDate(p.end)}`;
+  document.getElementById("report-generated").textContent =
+    `Issued ${formatDate(data.generated_at)}`;
+  document.title = `${data.title} · ${data.subtitle} | Remon`;
+}
+
+function renderNav(data) {
+  const nav = document.getElementById("cat-nav");
+  nav.innerHTML = CATEGORY_ORDER.map((key, i) => {
+    const c = data.categories[key];
+    if (!c) return "";
+    return `
+      <button class="cat-btn ${i === 0 ? "active" : ""}" data-cat="${key}">
+        <span class="num">Part ${ROMAN[i]}</span>
+        <span class="label">${esc(c.label)}</span>
+        ${c.sublabel ? `<span class="sublabel">${esc(c.sublabel)}</span>` : `<span class="sublabel">&nbsp;</span>`}
+      </button>`;
+  }).join("");
+
+  nav.addEventListener("click", (e) => {
+    const btn = e.target.closest(".cat-btn");
+    if (!btn) return;
+    const cat = btn.dataset.cat;
+    document.querySelectorAll(".cat-btn").forEach(b => b.classList.toggle("active", b === btn));
+    document.querySelectorAll(".cat-section").forEach(s =>
+      s.classList.toggle("active", s.dataset.cat === cat));
+  });
+}
+
+function renderContent(data) {
+  const content = document.getElementById("content");
+  content.innerHTML = CATEGORY_ORDER.map((key, i) => {
+    const c = data.categories[key];
+    if (!c) return "";
+    return `
+      <section class="cat-section ${i === 0 ? "active" : ""}" data-cat="${key}">
+        <div class="section-header">
+          <div class="kicker">Part ${ROMAN[i]}</div>
+          <h2>${esc(c.label)}</h2>
+          ${c.sublabel ? `<div class="desc">${esc(c.sublabel)}</div>` : ""}
+        </div>
+
+        <div class="part-label">
+          <span class="num">§ 01</span>
+          <span class="title">本月要聞</span>
+          <span class="rule"></span>
+        </div>
+        ${renderHeadlines(c.summary_headlines || [])}
+
+        <div class="part-label">
+          <span class="num">§ 02</span>
+          <span class="title">深度分析</span>
+          <span class="rule"></span>
+        </div>
+        ${renderAnalyses(c.deep_analyses || [])}
+      </section>`;
+  }).join("");
+}
+
+function renderHeadlines(items) {
+  if (!items.length) {
+    return `<div class="empty">本月無入選要聞</div>`;
+  }
+  return `<ul class="headlines">${items.map(h => `
+    <li>
+      <div class="date-source">
+        <span>${formatDate(h.date)}</span>
+        ${h.source ? `&nbsp;&nbsp;<span class="source">${esc(h.source)}</span>` : ""}
+      </div>
+      <h3><a href="${esc(h.url)}" target="_blank" rel="noopener">${esc(h.title)}</a></h3>
+      ${h.one_liner ? `<div class="one-liner">${esc(h.one_liner)}</div>` : ""}
+    </li>`).join("")}</ul>`;
+}
+
+function renderAnalyses(items) {
+  if (!items.length) {
+    return `<div class="empty">本月未選取深度分析主題</div>`;
+  }
+  return items.map(a => `
+    <article class="analysis">
+      <span class="tag">In-Depth</span>
+      <h3>${esc(a.title)}</h3>
+      <div class="body">${
+        (a.body || "").split(/\n\n+/).map(p => `<p>${esc(p)}</p>`).join("")
+      }</div>
+      ${renderRefs(a)}
+    </article>`).join("");
+}
+
+function renderRefs(a) {
+  const refs = [];
+  if (a.anchor_url) refs.push(`<a href="${esc(a.anchor_url)}" target="_blank" rel="noopener">主要來源 ↗</a>`);
+  (a.related_urls || []).forEach((u, i) =>
+    refs.push(`<a href="${esc(u)}" target="_blank" rel="noopener">延伸 ${i+1} ↗</a>`));
+  if (!refs.length) return "";
+  return `<div class="refs"><strong style="color:var(--ink);letter-spacing:0.1em;">參考資料 　</strong>${refs.join("")}</div>`;
+}
+
+load();
+</script>
+</body>
+</html>
